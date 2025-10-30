@@ -8,7 +8,7 @@ var header = document.getElementById('head');
 var welcomeSection = document.getElementById('welcome');
 var loginSection = document.getElementById('loginSec');
 var welcomeHeader = document.getElementById('welcomeHeader');
-var allUsers = JSON.parse(localStorage.getItem('users'));
+var allUsers;
 var currentUser;
 
 
@@ -18,6 +18,12 @@ loginBtn.addEventListener('click',function(){
     var oldMsg = document.querySelector('.login-msg');
     if (oldMsg) oldMsg.remove();
 
+    if (localStorage.getItem('users')===null){
+    allUsers=[];
+    }else{
+        allUsers=JSON.parse(localStorage.getItem('users'));
+    }
+    
     var existFlag=false;
     for(var i=0; i<allUsers.length; i++){
         if(allUsers[i].email == userEmail.value && allUsers[i].password == userPassword.value){
